@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "To Do App";
+}
+
+<div class="text-center">
+    <h4 class="display-4">To do list</h4>
+
+    <ul>
+    @foreach (var item in Model)
+    {
+        <li>@item.Task</li>
+    }
+</ul>
+</div>
