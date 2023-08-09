@@ -14,22 +14,24 @@
 <div class="container mt-4">
     <h1>To-Do List</h1>
 
-   <ul class="list-group">
-    @for (int i = 0; i < Model.Count; i++)
-    {
-        var task = Model[i];
-        <li class="list-group-item">
-            <form method="post" asp-action="ToggleTask" asp-route-ToDoIndex="@i"> <!-- Use loop index as route parameter -->
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="TaskDone" @if (task.TaskDone) { <text>checked</text> } onchange="this.form.submit();" />
-                    <label class="form-check-label" for="TaskDone">@task.Task</label>
-                </div>
-            </form>
-        </li>
-    }
-</ul>
+    <!-- Display the list of tasks using a loop -->
+    <ul class="list-group">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            var task = Model[i];
+            <li class="list-group-item">
+                <!-- Use a form to toggle the completion status of a task -->
+                <form method="post" asp-action="ToggleTask" asp-route-ToDoIndex="@i">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="TaskDone" @if (task.TaskDone) { <text>checked</text> } onchange="this.form.submit();" />
+                        <label class="form-check-label" for="TaskDone">@task.Task</label>
+                    </div>
+                </form>
+            </li>
+        }
+    </ul>
 
-
+    <!-- Form to add a new task to the list -->
     <h2 class="mt-4">Add New Task</h2>
     <form method="post" asp-action="AddTask" class="mb-4">
         <div class="form-group">
